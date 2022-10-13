@@ -1,72 +1,634 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <div class="navbar">
-        <nav>
-          <label class="logo"> Find-My-Project </label>
-          <ul>
-            <li><a class="active" href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contributors</a></li>
-            <li><a href="#">Contact-Us</a></li>
-          </ul>
-        </nav>
-      </div>
 
-      <section>
-        <div class="info">
-          <h1 id="info-head">Quick Contact</h1>
-          <p id="caption">get instant project ideas....</p>
-          <input
-            class="form__field"
-            type="input"
-            placeholder="Name"
-            name="name"
-            id="name"
-            required
-          />
-          <input
-            class="form__field"
-            type="email"
-            placeholder="abc@gmail.com"
-            name="email"
-            id="email"
-            required
-          />
-          <input
-            class="form__field"
-            type="text"
-            placeholder="College Name"
-            name="college-name"
-            id="college-name"
-            required
-          />
-          <input list="stream" name="stream" class="form__field" placeholder="Stream"/></label>
-          <datalist id="stream">
-            <option value="CSE">
-            <option value="IT">
-            <option value="ECE">
-          </datalist>
-          
-          <input list="proj-idea" name="proj-idea" class="form__field" placeholder="Project Domain"/></label>
-          <datalist id="proj-dom">
-            <option value="CSE">
-            <option value="IT">
-            <option value="ECE">
-          </datalist>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 22px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        section.heading {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section img {
+            max-width: 250px;
+            max-height: 250px;
+            border: 5px;
+            margin: 25px 14px;
+            padding: 23px 14px;
+            border-radius: 80%;
+
+        }
+
+        .details p {
+            font-size: 20px;
+            color: #ff676d;
+        }
+
+        .form-section {
+            padding: 20px 35px;
+            position: relative;
+            left: 352px;
+            width: 50%;
+            background: border-box;
+            margin: 5px 20px;
+        }
+
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #474e5d;
+            color: white;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Style inputs */
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            font-size: 15px;
+
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type=email] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            font-size: 15px;
+
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .form-section {
+            position: relative;
+            left: 438px;
+            width: 50%;
+            background: border-box;
+        }
+
+        button#submit {
+            left: 360px;
+            position: relative;
+            color: rgb(108, 105, 105);
+        }
+
+        /* Style the container/contact section */
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        /* Create two columns that float next to eachother */
+        .column {
+            float: left;
+            width: 50%;
+            margin-top: 6px;
+            padding: 20px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        header {
+
+            width: 100%;
+            height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 10%;
+            background: rgba(0, 0, 0, 0.2);
+            position: sticky;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+        }
+
+        nav li {
+            display: inline-block;
+            list-style: none;
+            padding: 0px 20px;
+            font-size: larger;
+        }
+
+        nav ul li a:hover {
+            font-size: 25px;
+            transition: 500ms;
+            background-color: rgb(174, 169, 169);
+        }
+
+        a,
+        button {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 3px 15px;
+            border: 1px;
+            border-radius: 50px;
+
+        }
+
+        button {
+            background: rgba(31, 30, 30, 0.2);
+            border: 2px solid #fd5e53;
+            border-radius: 50px;
+            padding: 9px 25px;
+        }
+
+        button:hover {
+            background-color: rgb(57, 52, 52);
+
+        }
+
+        #check {
+            display: none;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+
+            .column,
+            input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+
+
+
+
+
+        @media(max-width:1270px) {
+
+
+
+
+            .logo {
+                font-size: 25px;
+                letter-spacing: 1px;
+            }
+
+            a,
+            button {
+                font-size: 17px;
+                font-weight: bold;
+                color: #fff;
+                cursor: pointer;
+                text-decoration: none;
+                padding: 3px 15px;
+                border: 1px;
+                border-radius: 50px;
+            }
+
+            button {
+                background: rgba(82, 81, 81, 0.2);
+                border: 2px solid #fd5e53;
+                border-radius: 50px;
+                padding: 5px 15px;
+            }
+
+            nav ul li a:hover {
+                font-size: 19px;
+                transition: 500ms;
+                background-color: rgb(174, 169, 169);
+            }
+
+        }
+
+        @media(max-width:1160px) {
+            .logo {
+                font-size: 20px;
+                left: 10px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+                display: flex;
+            }
+
+            nav ul li a:hover {
+                font-size: 14px;
+                transition: 500ms;
+                background-color: rgb(93, 85, 85);
+            }
+
+            a,
+            button {
+                font-size: 13px;
+                font-weight: bold;
+                color: #fff;
+                cursor: pointer;
+                text-decoration: none;
+                padding: 3px 11px;
+                border: 1px;
+                border-radius: 50px;
+            }
+
+            button {
+                background: rgba(77, 70, 70, 0.2);
+                border: 1px solid #fd5e53;
+                border-radius: 50px;
+                padding: 3px 10px;
+            }
+        }
+
+
+
+        @media(max-width:950px) {
+
+            ul {
+                position: fixed;
+                width: 43%;
+                height: 162px;
+                background: #2c3e50;
+                top: 60px;
+                left: -2%;
+                text-align: center;
+                transition: all
+            }
+
+            nav ul li {
+                display: block;
+            }
+
+            nav ul li a {
+                font-size: 20px;
+            }
+
+            a:hover,
+            a.active {
+                background: none;
+                color: #0082e6;
+            }
+
+            #check:checked~ul {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="logo">
+            <p>FMP</p>
         </div>
-      </section>
+        <nav>
+            <i class="fas fa-bars"></i>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">services</a></li>
+                <li><a href="#">contact</a></li>
+                <li><a href="#">feedback</a></li>
+            </ul>
+        </nav>
+        <button><a href="#">Get Started</a></button>
     </header>
-  </body>
+   
+        
+                <div class="form-section">
+                    <form onsubmit="sendEmail(); reset(); return false;">
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                        <label for="stream">Stream</label>
+                        <select id="stream" name="stream">
+                            <option value="cse">CSE</option>
+                            <option value="ece">ECE</option>
+                            <option value="it">IT</option>
+                            <option value="ee">EE</option>
+                            <option value="eee">EEE</option>
+                            <option value="me">ME</option>
+                            <option value="other">others</option>
+                        </select>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Email Id.." required>
+                        <label for="subject">Domain</label>
+                        <textarea id="subject" name="subject" placeholder="Domain of Project"
+                            style="height:100px"></textarea>
+                        <button type="submit" id="submit" value="Submit">submit</button>
+                    </form>
+             </div>
+      
+
+        <div class="about-section">
+            <h1>About us</h1>
+            <p>Some text about who we are and what we do.</p>
+            <p> Private Limited is an unlisted private company incorporated on 25 October, 2021. It is
+                classified as a private limited company and is located in , Uttar Pradesh. It's authorized share capital
+                is INR 1.00 lac and the total paid-up capital is INR 1.00 lac.</p>
+        </div>
+
+        <h2 style="text-align:center">Our Team</h2>
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+
+                    <section class="heading">
+                        <img src="team1.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Paras Jain</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- section ends here -->
+                <div class="swiper-slide">
+
+                    <section class="heading">
+                        <img src="team2.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Raunak Goswami</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="swiper-slide">
+                    <section class="heading">
+                        <img src="team3.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Aryan Bishwas</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+                </div>
+                <!-- section ends here -->
+                <div class="swiper-slide">
+                    <section class="heading">
+                        <img src="team1.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Ankit Bhtacharjee</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- section ends here -->
+                <div class="swiper-slide">
+                    <section class="heading">
+                        <img src="team2.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Raunak Goswami</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- section ends here -->
+                <div class="swiper-slide">
+
+                    <section class="heading">
+                        <img src="team3.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Jyoti Yadav</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- section ends here -->
+                <div class="swiper-slide">
+
+                    <section class="heading">
+                        <img src="team3.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Bikash Shaw</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- section ends here -->
+                <div class="swiper-slide">
+
+                    <section class="heading">
+                        <img src="team1.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Anshul Singh</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- section ends here -->
+                <div class="swiper-slide">
+                    <section class="heading">
+                        <img src="team2.jpg" alt="">
+                        <div class="details">
+                            <div class="name">Aman Shrivastav</div>
+                            <div class="job">Founder</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium aliquid quaerat
+                                consequuntur.</p>
+                        </div>
+                    </section>
+                </div>
+                <!-- section ends here -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+
+        <div class="container">
+            <div style="text-align:center">
+                <h3>Contact Us</h3>
+                <p>Swing by for a cup of coffee, or leave us a message:</p>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <img src="map.jpg" style="width:100%">
+                </div>
+                <div class="column">
+
+                    <form onsubmit="sendEmail(); reset(); return false;">
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                        <label for="country">Country</label>
+                        <select id="country" name="country">
+                            <option value="australia">India</option>
+                            <option value="canada">Canada</option>
+                            <option value="usa">USA</option>
+                        </select>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Email Id.." required>
+                        <label for="subject">Subject</label>
+                        <textarea id="subject" name="subject" placeholder="Write something.."
+                            style="height:170px"></textarea>
+                        <button type="submit" value="Submit">submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: 4,
+                spaceBetween: 30,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1,
+                    },
+                    620: {
+                        slidesPerView: 2,
+                    },
+                    1150: {
+                        slidesPerView: 3,
+                    },
+
+                },
+
+            });
+
+
+
+            function sendEmail() {
+                Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: "Raunak Goswami",
+                    Password: "PASSWORD",
+                    To: 'raunakgoswami124@gmail.com',
+                    From: "you@isp.com",
+                    Subject: "This is the subject",
+                    Body: "First Name:" + documant.getElementById("fname").value
+                        + " <br> Last Name:" + documant.getElementById("lname").value
+                        + " <br> Country:" + documant.getElementById("country").value
+                        + " <br> Email:" + documant.getElementById("email").value
+                        + " <br> Subject:" + documant.getElementById("subject").value
+                }).then(
+                    message => alert("Message sent successfully")
+                );
+            }
+
+
+        </script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</body>
+
 </html>
